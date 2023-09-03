@@ -1,9 +1,8 @@
-import fs from 'fs';
-import { listDirectories } from './utils';
+import { listDirectoriesSync } from './utils';
 
 function main(directory: string) {
         
-    listDirectories(directory)
+    listDirectoriesSync(directory)
     .map((val) => console.log(val));
 }
 
