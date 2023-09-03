@@ -1,23 +1,19 @@
 import fs from 'fs';
 import path from 'path';
 
-export function listDirectories(dirPath: string): string[] {
+export function listDirectoriesSync(dirPath: string): string[] {
     const directories: string[] = [];
 
-    fs.readdir(dirPath, (err, files: string[]) => {
-        if(err == null) {
+    const entities: string[] = fs.readdirSync(dirPath);
 
-            files.map((file: string) => {
-                const absolutePath = path.join(dirPath, file);
-                
-                fs.stat(absolutePath, (error, status: fs.Stats) => {
-                    if(status.isDirectory()) {
-                        directories.push(file);
-                    }
-                })
-            }); 
+    entities.map((entity: string) => {
+
+        const absolutePath = path.join(dirPath, entity);
+
+        if(fs.statSync(absolutePath).isDirectory()) {
+            directories.push(absolutePath);
         }
     });
-    
+
     return directories;
 }
