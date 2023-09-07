@@ -1,22 +1,54 @@
-import { compareTwoDirectories, listDirectoriesSync } from './utils';
+import fs from 'fs';
+import path from 'path';
+import { messages } from './messages';
 
-function print(object: any) {
-    console.log(object);
-}
+function getAllFiles(dirPath: string, arrayOfFiles: string[]): string[] {
+    const files = fs.readdirSync(dirPath);
+  
+    arrayOfFiles = arrayOfFiles || [];
+  
+    files.forEach(function (file) {
+      const filePath = path.join(dirPath, file);
+      if (fs.statSync(filePath).isDirectory()) {
+        arrayOfFiles = getAllFiles(filePath, arrayOfFiles);
+      } else {
+        arrayOfFiles.push(filePath);
+      }
+    });
+  
+    return arrayOfFiles;
+  }
 
-function main(directory: string) {
-        
-    const directories: string[] = listDirectoriesSync(directory);
-    
-    if(directories.length < 1) {
-        print('there should be at least two directories...');
+export async function compareTwoDirectories(first: string, second: string) {
+    const firstFiles = getAllFiles(first, [])
+    const secondFiles = getAllFiles(second, [])
+
+    if(firstFiles.length !== secondFiles.length) {
+        console.log(messages.numberOfFilesNotEqual(firstFiles.length, secondFiles.length))
     }
     else {
-        const firstTwoDirectories = directories.slice(0, 2);
-        
-        print(`Comparing <${firstTwoDirectories[0]}> and <${firstTwoDirectories[1]}>...`);
-        compareTwoDirectories(firstTwoDirectories[0], firstTwoDirectories[1])
+      console.log(messages.numberOfFilesEqual(firstFiles.length));
+      for(let i = 0; i < firstFiles.length; i++) {
+        const baseOfFirst = path.basename(firstFiles[i]);
+        const baseOfSecond = path.basename(secondFiles[i])
+
+      }
     }
 }
 
-main("H:/Typescript/see");
+export function listDirectoriesSync(dirPath: string): string[] {
+    const directories: string[] = [];
+
+    const entities: string[] = fs.readdirSync(dirPath);
+
+    entities.forEach((entity: string) => {
+
+        const absolutePath = path.join(dirPath, entity);
+
+        if(fs.statSync(absolutePath).isDirectory()) {
+            directories.push(absolutePath);
+        }
+    });
+
+    return directories;
+}
