@@ -19,15 +19,16 @@ function getAllFiles(dirPath: string, arrayOfFiles: string[]): string[] {
     return arrayOfFiles;
   }
 
-export async function compareTwoDirectories(first: string, second: string): Promise<string> {
+export async function compareTwoDirectories(first: string, second: string) {
     const firstFiles = getAllFiles(first, [])
     const secondFiles = getAllFiles(second, [])
 
     if(firstFiles.length !== secondFiles.length) {
-        return messages.numberOfFilesNotEqual(firstFiles.length, secondFiles.length)
+        console.log(messages.numberOfFilesNotEqual(firstFiles.length, secondFiles.length))
     }
     else {
-        return ""
+      console.log(messages.numberOfFilesEqual(firstFiles.length));
+      
     }
 }
 
