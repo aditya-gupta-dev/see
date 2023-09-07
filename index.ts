@@ -16,9 +16,6 @@ function main(directory: string) {
         
         print(`Comparing <${firstTwoDirectories[0]}> and <${firstTwoDirectories[1]}>...`);
         compareTwoDirectories(firstTwoDirectories[0], firstTwoDirectories[1])
-        .then(result => {
-            print(result)
-        })
     }
 }
 
