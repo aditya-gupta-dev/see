@@ -1,7 +1,7 @@
-import { listDirectoriesSync } from './utils';
+import { compareTwoDirectories, listDirectoriesSync } from './utils';
 
 function print(object: any) {
-    print(object);
+    console.log(object);
 }
 
 function main(directory: string) {
@@ -13,8 +13,12 @@ function main(directory: string) {
     }
     else {
         const firstTwoDirectories = directories.slice(0, 2);
-        print(`Comparing <${firstTwoDirectories[0]}> and <${firstTwoDirectories[1]}>...`);
         
+        print(`Comparing <${firstTwoDirectories[0]}> and <${firstTwoDirectories[1]}>...`);
+        compareTwoDirectories(firstTwoDirectories[0], firstTwoDirectories[1])
+        .then(result => {
+            print(result)
+        })
     }
 }
 
