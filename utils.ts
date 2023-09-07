@@ -28,7 +28,11 @@ export async function compareTwoDirectories(first: string, second: string) {
     }
     else {
       console.log(messages.numberOfFilesEqual(firstFiles.length));
-      
+      for(let i = 0; i < firstFiles.length; i++) {
+        const baseOfFirst = path.basename(firstFiles[i]);
+        const baseOfSecond = path.basename(secondFiles[i])
+
+      }
     }
 }
 
