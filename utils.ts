@@ -46,8 +46,8 @@ export async function compareTwoDirectories(first: string, second: string) {
       const sortedFilesSecond = secondBasenames.sort();
       
       for(let i = 0; i < sortedFilesFirst.length; i++) {
-        if(sortedFilesFirst[i] === sortedFilesSecond[i]) {
-
+        if(sortedFilesFirst[i] !== sortedFilesSecond[i]) {
+          // TODO: 
         }
       }
     }
