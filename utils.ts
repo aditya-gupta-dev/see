@@ -40,6 +40,11 @@ export async function compareTwoDirectories(first: string, second: string) {
       const firstBasenames = getBaseNameOfAllFiles(firstFiles);
       const secondBasenames = getBaseNameOfAllFiles(secondFiles);
 
+      console.log("Sorting files in first directory...");
+      const sortedFilesFirst = firstBasenames.sort();
+      console.log("Sorting files in second directory...");
+      const sortedFilesSecond = firstBasenames.sort();
+      
       
     }
 }
