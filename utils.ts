@@ -2,6 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import { messages } from './messages';
 
+function getBaseNameOfAllFiles(files: string[]): string[] {
+  const basenames: string[] = [];
+  for(let i = 0; i < files.length; i++) {
+    basenames.push(path.basename(files[i]));
+  }
+  return basenames;
+}
+
 function getAllFiles(dirPath: string, arrayOfFiles: string[]): string[] {
     const files = fs.readdirSync(dirPath);
   
@@ -28,11 +36,6 @@ export async function compareTwoDirectories(first: string, second: string) {
     }
     else {
       console.log(messages.numberOfFilesEqual(firstFiles.length));
-      for(let i = 0; i < firstFiles.length; i++) {
-        const baseOfFirst = path.basename(firstFiles[i]);
-        const baseOfSecond = path.basename(secondFiles[i])
-
-      }
     }
 }
 
