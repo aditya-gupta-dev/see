@@ -5,5 +5,4 @@ export const messages = {
         `P: first and the second directory contain the same no. of files i.e. ${filesInFirstDirectory}`,
     fileNamesNotEqual : (firstFileName: string, secondFileName: string) => 
             `F: ${firstFileName} dosen't matches with ${secondFileName}`    
-    
 }
